@@ -1,15 +1,5 @@
 import { Field, ErrorMessage } from 'formik';
-
-interface RecipientFieldProps {
-  index: number;
-  fieldName: 'email' | 'name';
-  label: string;
-  placeholder: string;
-  type?: 'email' | 'text';
-  touched?: any;
-  errors?: any;
-  required?: boolean;
-}
+import { RecipientFieldProps } from '@/types/props/RecipientFieldProps';
 
 export default function RecipientField({
   index,

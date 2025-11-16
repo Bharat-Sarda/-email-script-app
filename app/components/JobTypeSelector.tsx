@@ -1,20 +1,12 @@
 import { Field, ErrorMessage } from 'formik';
-import { JobType } from '@/types/FormValues';
-
-interface JobTypeSelectorProps {
-  name?: string;
-  label?: string;
-  required?: boolean;
-  options?: JobType[];
-  errors?: any;
-  touched?: any;
-}
+import { JobTypeEnum } from '@/enums/jobTypeEnum';
+import { JobTypeSelectorProps } from '@/types/props/JobTypeSelectorProps';
 
 export default function JobTypeSelector({
   name = 'jobType',
   label = 'Job Type',
   required = true,
-  options = ['frontend', 'backend', 'fullstack'],
+  options = [JobTypeEnum.FRONTEND, JobTypeEnum.BACKEND, JobTypeEnum.FULLSTACK],
   errors,
   touched,
 }: JobTypeSelectorProps) {

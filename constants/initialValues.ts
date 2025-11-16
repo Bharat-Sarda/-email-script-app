@@ -1,8 +1,9 @@
 import { FormValues } from '@/types/FormValues';
+import { JobTypeEnum } from '@/enums/jobTypeEnum';
 
 export const initialValues: FormValues = {
   recipients: [{ email: '', name: '' }],
-  jobType: 'frontend',
+  jobType: JobTypeEnum.FRONTEND,
   userDetails: {
     yourName: 'Bharat Sarda',
     currentCompany: 'Lumiq',

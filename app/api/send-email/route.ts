@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { getEmailTemplate } from '@/lib/email-templates';
 import { UserDetails, Recipient } from '@/types/email';
-import { JobType } from '@/types/FormValues';
 import { JobTypeEnum } from '@/enums/jobTypeEnum';
 
 // Validate environment variables
@@ -56,7 +55,7 @@ export async function POST(request: NextRequest) {
     const { recipients, userDetails, jobType } = body as {
       recipients: Recipient[];
       userDetails: UserDetails;
-      jobType: JobType;
+      jobType: JobTypeEnum;
     };
 
     if (!recipients || !Array.isArray(recipients) || recipients.length === 0) {
