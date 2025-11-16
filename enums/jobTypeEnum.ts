@@ -1,5 +1,5 @@
 export enum JobTypeEnum {
-    FRONTEND = 'frontend',
-    BACKEND = 'backend',
-    FULLSTACK = 'fullstack',
+  FRONTEND = 'frontend',
+  BACKEND = 'backend',
+  FULLSTACK = 'fullstack',
 }

@@ -27,7 +27,9 @@ export const useSendEmail = (): UseSendEmailReturn => {
   const sendEmails = async (values: FormValues) => {
     setIsSending(true);
     setSendResults([]);
-    toast.loading(ToastMessages.STARTING_EMAIL_PROCESS, { id: 'sending-emails' });
+    toast.loading(ToastMessages.STARTING_EMAIL_PROCESS, {
+      id: 'sending-emails',
+    });
 
     try {
       // Ensure fixed values are always set
@@ -41,7 +43,7 @@ export const useSendEmail = (): UseSendEmailReturn => {
 
       const response = await fetch(UrlsEnum.SEND_EMAIL, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           recipients: values.recipients,
           userDetails: userDetailsWithFixedValues,
@@ -54,33 +56,53 @@ export const useSendEmail = (): UseSendEmailReturn => {
       if (response.ok) {
         setSendResults(data.results || []);
         toast.dismiss('sending-emails');
-        
+
         // Show individual toasts for each recipient
         const results = data.results || [];
         results.forEach((result: SendEmailResult) => {
           if (result.status === 'success') {
-            toast.success(ToastMessages.EMAIL_SENT_SUCCESS(result.name, result.email), {
-              duration: 3000,
-            });
+            toast.success(
+              ToastMessages.EMAIL_SENT_SUCCESS(result.name, result.email),
+              {
+                duration: 3000,
+              }
+            );
           } else {
-            toast.error(ToastMessages.EMAIL_SEND_FAILED(result.name, result.email, result.error), {
-              duration: 5000,
-            });
+            toast.error(
+              ToastMessages.EMAIL_SEND_FAILED(
+                result.name,
+                result.email,
+                result.error
+              ),
+              {
+                duration: 5000,
+              }
+            );
           }
         });
 
         // Show summary toast
-        const successCount = results.filter((r: SendEmailResult) => r.status === 'success').length;
-        const failCount = results.filter((r: SendEmailResult) => r.status === 'error').length;
-        
+        const successCount = results.filter(
+          (r: SendEmailResult) => r.status === 'success'
+        ).length;
+        const failCount = results.filter(
+          (r: SendEmailResult) => r.status === 'error'
+        ).length;
+
         if (failCount === 0) {
           toast.success(ToastMessages.ALL_EMAILS_SENT_SUCCESS(successCount), {
             duration: 4000,
           });
         } else {
-          toast.error(ToastMessages.EMAIL_SEND_COMPLETED_WITH_ERRORS(successCount, failCount), {
-            duration: 5000,
-          });
+          toast.error(
+            ToastMessages.EMAIL_SEND_COMPLETED_WITH_ERRORS(
+              successCount,
+              failCount
+            ),
+            {
+              duration: 5000,
+            }
+          );
         }
       } else {
         toast.dismiss('sending-emails');
@@ -105,4 +127,3 @@ export const useSendEmail = (): UseSendEmailReturn => {
     clearResults,
   };
 };
-

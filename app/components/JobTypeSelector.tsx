@@ -22,28 +22,27 @@ export default function JobTypeSelector({
 
   return (
     <div className="!mb-6 border-gray-200 border-t !pt-3">
-      <h2 className={`text-xl font-semibold !mb-2 ${hasError ? 'text-red-600' : 'text-gray-800'}`}>
+      <h2
+        className={`text-xl font-semibold !mb-2 ${hasError ? 'text-red-600' : 'text-gray-800'}`}
+      >
         {label} {required && <span className="text-red-500">*</span>}
       </h2>
       <div className="flex md:flex-row flex-col  !gap-4">
         {options.map((type) => (
-          <label
-            key={type}
-            className="flex items-center cursor-pointer"
-          >
+          <label key={type} className="flex items-center cursor-pointer">
             <Field
               type="radio"
               name={name}
               value={type}
               className={`!mr-2 !h-4 !w-4 ${
-                hasError
-                  ? '!text-red-600'
-                  : '!text-blue-600'
+                hasError ? '!text-red-600' : '!text-blue-600'
               }`}
             />
-            <span className={`capitalize ${
-              hasError ? 'text-red-600' : 'text-gray-700'
-            }`}>
+            <span
+              className={`capitalize ${
+                hasError ? 'text-red-600' : 'text-gray-700'
+              }`}
+            >
               {type}
             </span>
           </label>
@@ -57,4 +56,3 @@ export default function JobTypeSelector({
     </div>
   );
 }
-

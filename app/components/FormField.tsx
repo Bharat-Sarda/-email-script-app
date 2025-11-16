@@ -24,16 +24,16 @@ export default function FormField({
   // Helper to check if field has error
   const getFieldError = (fieldName: string): boolean => {
     if (!touched || !errors) return false;
-    
+
     const keys = fieldName.split('.');
     let touchedValue = touched;
     let errorValue = errors;
-    
+
     for (const key of keys) {
       touchedValue = touchedValue?.[key];
       errorValue = errorValue?.[key];
     }
-    
+
     return !!(touchedValue && errorValue);
   };
 
@@ -60,4 +60,3 @@ export default function FormField({
     </div>
   );
 }
-

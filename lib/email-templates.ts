@@ -20,7 +20,15 @@ export function getEmailTemplate(
   recipient: Recipient,
   jobType: JobType
 ): string {
-  const { yourName, currentCompany, role, targetCompany, resumeLink, linkedIn, jobLink } = userDetails;
+  const {
+    yourName,
+    currentCompany,
+    role,
+    targetCompany,
+    resumeLink,
+    linkedIn,
+    jobLink,
+  } = userDetails;
 
   const experienceText = getExperienceText(jobType, currentCompany);
   const roleDescription = getRoleDescription(jobType);
@@ -84,4 +92,3 @@ function getRoleDescription(jobType: JobType): string {
       return 'Software Developer';
   }
 }
-

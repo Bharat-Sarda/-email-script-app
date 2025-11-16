@@ -17,4 +17,3 @@ export const getResumeLink = (jobType: JobTypeEnum): string => {
       return '';
   }
 };
-

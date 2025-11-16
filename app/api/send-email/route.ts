@@ -1,20 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { getEmailTemplate, UserDetails, Recipient, JobType } from '@/lib/email-templates';
+import {
+  getEmailTemplate,
+  UserDetails,
+  Recipient,
+  JobType,
+} from '@/lib/email-templates';
 
 // Validate environment variables
-const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'EMAIL_FROM'];
-const missingEnvVars = requiredEnvVars.filter((varName) => !process.env[varName]);
+const requiredEnvVars = [
+  'SMTP_HOST',
+  'SMTP_PORT',
+  'SMTP_USER',
+  'SMTP_PASS',
+  'EMAIL_FROM',
+];
+const missingEnvVars = requiredEnvVars.filter(
+  (varName) => !process.env[varName]
+);
 
 if (missingEnvVars.length > 0) {
-  console.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+  console.error(
+    `Missing required environment variables: ${missingEnvVars.join(', ')}`
+  );
 }
 
 const transporter = nodemailer.createTransport({
   pool: true,
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT || '465', 10),
-  secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_SECURE === undefined,
+  secure:
+    process.env.SMTP_SECURE === 'true' || process.env.SMTP_SECURE === undefined,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -24,9 +40,16 @@ const transporter = nodemailer.createTransport({
 export async function POST(request: NextRequest) {
   try {
     // Check if required environment variables are set
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS || !process.env.EMAIL_FROM) {
+    if (
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASS ||
+      !process.env.EMAIL_FROM
+    ) {
       return NextResponse.json(
-        { error: 'Email configuration is missing. Please check your environment variables.' },
+        {
+          error:
+            'Email configuration is missing. Please check your environment variables.',
+        },
         { status: 500 }
       );
     }
@@ -58,7 +81,7 @@ export async function POST(request: NextRequest) {
     for (const recipient of recipients) {
       try {
         const html = getEmailTemplate(userDetails, recipient, jobType);
-        
+
         const mailOptions = {
           from: `${yourName} <${process.env.EMAIL_FROM}>`,
           to: recipient.email,
@@ -101,4 +124,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

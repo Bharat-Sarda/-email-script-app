@@ -1,3 +1,3 @@
 export enum UrlsEnum {
-    SEND_EMAIL = '/api/send-email'
+  SEND_EMAIL = '/api/send-email',
 }
