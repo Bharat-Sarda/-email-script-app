@@ -45,7 +45,7 @@ export default function Home() {
                       {({ push, remove }) => (
                         <div className="!space-y-4">
                           {values.recipients.map((recipient, index) => (
-                            <div key={index} className="flex gap-4 items-start">
+                            <div key={index} className="flex md:gap-4 items-start">
                               <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <RecipientField
                                   index={index}
@@ -70,7 +70,7 @@ export default function Home() {
                                 <button
                                   type="button"
                                   onClick={() => remove(index)}
-                                  className="cursor-pointer !mt-6 !p-2 hover:bg-red-50 !rounded-md !transition-colors"
+                                  className=" cursor-pointer !mt-6 !p-2 hover:bg-red-50 !rounded-md !transition-colors"
                                   title="Remove recipient"
                                 >
                                   <svg
