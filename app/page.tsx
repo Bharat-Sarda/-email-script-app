@@ -21,9 +21,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-scren bg-gray-50 !p-3">
+    <div className="bg-gray-50 !p-3">
       <div className="mx-auto h-full">
-        <div className="bg-white rounded-lg shadow-xl  !p-3">
+        <div className="bg-white rounded-lg shadow-xl min-h-[calc(100vh-2rem)]  !p-3">
           <h1 className="text-3xl font-bold text-gray-900 !mb-6 text-center">
             Job Email Generator
           </h1>
